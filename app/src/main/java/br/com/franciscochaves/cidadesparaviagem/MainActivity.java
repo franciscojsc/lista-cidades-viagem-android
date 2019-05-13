@@ -2,15 +2,18 @@ package br.com.franciscochaves.cidadesparaviagem;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private ListView mListaItens;
     private String[] itens = {
             "Angra dos Reis",
-            "Cladas novas",
+            "Caldas novas",
             "Aracaju",
             "Campos do Jordão",
             "Ilhéus",
@@ -42,6 +45,15 @@ public class MainActivity extends AppCompatActivity {
                 itens);
 
         mListaItens.setAdapter(adaptador);
+
+        mListaItens.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                int codigoPosicao = i;
+                String valorClicado = mListaItens.getItemAtPosition(codigoPosicao).toString();
+                Toast.makeText(getApplicationContext(), valorClicado, Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 }
